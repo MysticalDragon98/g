@@ -92,9 +92,13 @@ export default class Project {
 
     async executeCommand (command: string, args: string[], options: any = {}) {
         const commandPath = await this.getCommand(command);
-        const commandModule = await import(commandPath) as { default: (project: Project, args: string[], options?: any) => Promise<void> };
+        try {
+            const commandModule = await import(commandPath) as { default: (project: Project, args: string[], options?: any) => Promise<void> };
 
-        await commandModule.default(this, args, options);
+            await commandModule.default(this, args, options);
+        } catch (e) {
+            throw new Error(`Error executing command ${command}: ${e.message}`);
+        }
     }
 
     async ensureDir (path: FilePath | string) {
