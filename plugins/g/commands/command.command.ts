@@ -19,19 +19,4 @@ export default async function commandCommand (project: Project, args: string[], 
     });
     
     await project.vscodeOpen(fnPath);
-    /*const baseFolder = commandType === "p" ? "plugins" : "project-types";
-    const folderPath = commandType === "p" ?
-        project.pluginSubPath(commandParent, baseFolder) :
-        project.projectTypeSubPath(baseFolder);
-    const fnPath = join(folderPath, `${commandName}.command.ts`) as FilePath;
-
-    $ok(commandType && commandParent , "Usage: g command <module-name> <fn-name>");
-    $ok(await dirExists(project.subPath(folderPath)), `Module ${moduleName} does not exist`);
-
-    await project.generateFileFromTemplate("fn.ts", fnPath, {
-        name: fnName
-    });
-
-    
-    log(`Successfully created function ${fnName} in module ${moduleName}.`);*/
 }

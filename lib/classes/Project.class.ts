@@ -10,6 +10,7 @@ import { log } from "termx";
 import parseHandlebarsTemplate from "../modules/templates/parseHandlebarsTemplate";
 import vscodeOpen from "../modules/vscode/vscodeOpen";
 import getPluginPath from "../modules/plugins/getPluginPath";
+import { $ok } from "../exceptions";
 
 export default class Project {
 
@@ -113,11 +114,37 @@ export default class Project {
         }
         log(`Generating file ${destinationPath} from template ${templateName}...`);
 
+        $ok(!await fileExists(this.subPath(destinationPath)), `File ${destinationPath} already exists`);
+
         const templatePath = this.projectTypeSubPath(`file-templates/${templateName}`);
         const template = await readFile(templatePath, "utf-8");
         const content = parseHandlebarsTemplate(template, data);
 
         await writeFile(this.subPath(destinationPath), content);
+    }
+
+    async pushToFileFromTemplate (templateName: string, destinationPath: string, data: any = {}) {
+        if (templateName.indexOf(":") !== -1) {
+            const [ plugin, template ] = templateName.split(":");
+            return this.pushToFileFromPluginTemplate(plugin as PluginID, template, destinationPath, data);
+        }
+
+        log(`Pushing to file ${destinationPath} from template ${templateName}...`);
+
+        const templatePath = this.projectTypeSubPath(`file-templates/${templateName}`);
+        const template = await readFile(templatePath, "utf-8");
+        const content = parseHandlebarsTemplate(template, data);
+
+        await writeFile(this.subPath(destinationPath), content, { flag: "a" });
+    }
+
+    async pushToFileFromPluginTemplate (plugin: PluginID, templateName: string, destinationPath: string, data: any = {}) {
+        log(`Pushing to file ${destinationPath} from template ${plugin}:${templateName}...`);
+        const templatePath = this.pluginSubPath(plugin, `file-templates/${templateName}`);
+        const template = await readFile(templatePath, "utf-8");
+        const content = parseHandlebarsTemplate(template, data);
+
+        await writeFile(this.subPath(destinationPath), content, { flag: "a" });
     }
 
     async generateFileFromPluginTemplate (plugin: PluginID, templateName: string, destinationPath: string, data: any = {}) {
