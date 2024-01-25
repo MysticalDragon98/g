@@ -107,6 +107,24 @@ export default class Project {
         await exec(`mkdir -p ${this.subPath(path)}`);
     }
 
+    async parsePluginTemplate (plugin: PluginID | string, templateName: string, data: any = {}) {
+        log(`Parsing plugin template ${plugin}:${templateName}...`);
+        const templatePath = this.pluginSubPath(<PluginID>plugin, `file-templates/${templateName}`);
+        const template = await readFile(templatePath, "utf-8");
+        return parseHandlebarsTemplate(template, data);
+    }
+
+    async parseTemplate (templateName: string, data: any = {}) {
+        if (templateName.indexOf(":") !== -1) {
+            const [ plugin, template ] = templateName.split(":");
+            return this.parsePluginTemplate(plugin as PluginID, template, data);
+        }
+
+        const templatePath = this.projectTypeSubPath(`file-templates/${templateName}`);
+        const template = await readFile(templatePath, "utf-8");
+        return parseHandlebarsTemplate(template, data);
+    }
+
     async generateFileFromTemplate (templateName: string, destinationPath: string, data: any = {}) {        
         if (templateName.indexOf(":") !== -1) {
             const [ plugin, template ] = templateName.split(":");
@@ -154,6 +172,10 @@ export default class Project {
         const content = parseHandlebarsTemplate(template, data);
 
         await writeFile(this.subPath(destinationPath), content);
+    }
+
+    async addEnvvar (name: string, options: { required?: boolean, default?: string, type?: string } = {}) {
+        this.executeCommand("envvar", [ name ], options);
     }
 
     public static async fromPath (path: FilePath): Promise<Project> {
