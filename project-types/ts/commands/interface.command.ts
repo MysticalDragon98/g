@@ -7,33 +7,29 @@ import { log } from "termx";
 //* Imports
 
 export default async function interfaceCommand (project: Project, args: string[], options: any) {
-    let moduleName: string;
-    let fnName: string;
+    let iName: string;
     let folderPath: FilePath;
     let iPath: FilePath;
 
     if (options.folder) {
-        [ fnName ] = args;
+        [ iName ] = args;
 
-        $ok(fnName, "Usage: g interface --folder folder <fn-name>");
+        $ok(iName, "Usage: g interface --folder folder <interface-name>");
         folderPath = options.folder;
-        iPath = join(folderPath, `${fnName}.ts`) as FilePath;
+        iPath = join(folderPath, `${iName}.interface.ts`) as FilePath;
     } else {
-        [ moduleName, fnName ] = args;
+        [ iName ] = args;
 
-        folderPath = join("lib/modules", moduleName) as FilePath;
-        iPath = join(folderPath, `${fnName}.interface.ts`) as FilePath;
+        iPath = join("lib/classes", `${iName}.class.ts`) as FilePath;
 
-        $ok(moduleName && fnName, "Usage: g fn <module-name> <fn-name>");
+        $ok(iName, "Usage: g class <class-name>");
     }
-    
-    $ok(await dirExists(project.subPath(folderPath)), `Module ${moduleName} does not exist`);
 
     await project.generateFileFromTemplate("interface.ts", iPath, {
-        name: fnName
+        name: iName
     });
 
     await project.vscodeOpen(iPath);
     
-    log(`Successfully created interface ${fnName} at ${iPath}.`);
+    log(`Successfully created interface ${iName} at ${iPath}.`);
 }

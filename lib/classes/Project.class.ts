@@ -98,7 +98,7 @@ export default class Project {
 
             await commandModule.default(this, args, options);
         } catch (e) {
-            throw new Error(`Error executing command ${command}: ${e.message}`);
+            throw new Error(`Error executing command ${command}: ${e.message}\n${e.stack}`);
         }
     }
 
