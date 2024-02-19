@@ -13,7 +13,7 @@ async function main () {
     }); 
 }
 
-main();
+main().catch(console.log);
 
 process.on('uncaughtException', console.log);
 process.on('unhandledRejection', console.log);

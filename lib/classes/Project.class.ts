@@ -25,7 +25,7 @@ export default class Project {
         return getProjectTypePath(this.type);
     }
 
-    pluginPath (plugin: PluginID) {
+    pluginPath (plugin: PluginID | string) {
         return getPluginPath(plugin);
     }
 
@@ -37,7 +37,7 @@ export default class Project {
         return join(this.projectTypePath(), path) as FilePath;
     }
 
-    pluginSubPath (plugin: PluginID, path: FilePath | string) {
+    pluginSubPath (plugin: PluginID | string, path: FilePath | string) {
         return join(this.pluginPath(plugin), path) as FilePath;
     }
 
@@ -165,7 +165,7 @@ export default class Project {
         await writeFile(this.subPath(destinationPath), content, { flag: "a" });
     }
 
-    async generateFileFromPluginTemplate (plugin: PluginID, templateName: string, destinationPath: string, data: any = {}) {
+    async generateFileFromPluginTemplate (plugin: PluginID | string, templateName: string, destinationPath: string, data: any = {}) {
         log(`Generating file ${destinationPath} from template ${plugin}:${templateName}...`);
         const templatePath = this.pluginSubPath(plugin, `file-templates/${templateName}`);
         const template = await readFile(templatePath, "utf-8");
