@@ -2,14 +2,15 @@ import { join } from "path";
 import Project from "../../../lib/classes/Project.class";
 import insertTagLine from "../../../lib/modules/fs/insertTagLine";
 import toVariableName from "../../../lib/modules/utils/toVariableName";
+import vscodeOpen from "../../../lib/modules/vscode/vscodeOpen";
 //* Imports
 
 export default async function endpointCommand (project: Project, args: string[], options: any) {
     const [ path, endpoint ] = args;
-    const filePath = project.subPath(join("lib/http/endpoints", path, endpoint + ".http-endpoint.ts"));
+    const filePath = join("lib/http/endpoints", path, endpoint + ".http-endpoint.ts");
 
     await project.generateFileFromPluginTemplate("http", "endpoint.ts", filePath, {
-        name: path
+        name: endpoint
     });
 
     await insertTagLine(
@@ -23,4 +24,6 @@ export default async function endpointCommand (project: Project, args: string[],
         "Endpoints",
         `${toVariableName(endpoint)},`
     );
+
+    await vscodeOpen(project.subPath(filePath));
 }

@@ -10,6 +10,11 @@ export default async function (project: Project, options: any) {
     await insertTagLine(indexHTML, "Styles", `<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css\">`, {
         extension: "html"
     });
+
+    await insertTagLine(indexHTML, "Scripts", `<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js\"></script>`, {
+        extension: "html"
+    });
+    
     await insertTagLine(indexHTML, "Scripts", `<script src=\"https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js\"></script>`, {
         extension: "html"
     });
