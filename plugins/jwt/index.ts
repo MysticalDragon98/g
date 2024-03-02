@@ -6,6 +6,7 @@ import { installTSDependencies } from "../../project-types/ts/lib/modules/utils/
 import getPluginPath from "../../lib/modules/plugins/getPluginPath";
 import { PluginID } from "../../lib/types/PluginID.type";
 import vscodeOpen from "../../lib/modules/vscode/vscodeOpen";
+import { randomUUID } from "crypto";
 //* Imports
 
 export default async function (project: Project, options: any) {
@@ -13,7 +14,10 @@ export default async function (project: Project, options: any) {
     await installTSDependencies(["@types/jsonwebtoken"], { dev: true });
 
     await project.ensureDir("plugins/jwt");
-    await project.addEnvvar("JWT_SECRET", { required: true });
+    await project.addEnvvar("JWT_SECRET", {
+        required: true,
+        envDefault: randomUUID()
+    });
 
     await copyDir(<FilePath>join(getPluginPath("jwt" as PluginID), "template"), project.subPath("plugins/jwt"));
     await vscodeOpen(project.subPath(".env"));

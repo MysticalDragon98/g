@@ -174,7 +174,7 @@ export default class Project {
         await writeFile(this.subPath(destinationPath), content);
     }
 
-    async addEnvvar (name: string, options: { required?: boolean, default?: string, type?: string } = {}) {
+    async addEnvvar (name: string, options: { required?: boolean, default?: string, type?: string, envDefault?: string } = {}) {
         this.executeCommand("envvar", [ name ], options);
     }
 

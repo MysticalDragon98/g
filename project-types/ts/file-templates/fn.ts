@@ -1,5 +1,5 @@
 //* Imports
 
-export default async function {{name}} () {
+export default async function {{var name}} () {
     //* TODO
 }
