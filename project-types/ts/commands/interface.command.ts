@@ -20,9 +20,9 @@ export default async function interfaceCommand (project: Project, args: string[]
     } else {
         [ iName ] = args;
 
-        iPath = join("lib/classes", `${iName}.class.ts`) as FilePath;
+        iPath = join("lib/interfaces", `${iName}.interface.ts`) as FilePath;
 
-        $ok(iName, "Usage: g class <class-name>");
+        $ok(iName, "Usage: g interface <interface-name>");
     }
 
     await project.generateFileFromTemplate("interface.ts", iPath, {

@@ -4,7 +4,7 @@ import { FilePath } from "../../types/FilePath.type";
 import transformFile from "./transformFile";
 
 export default async function insertTagLine (path: FilePath, tag: string, line: string, { extension = "ts" } = {}) {
-    if (extension === "ts") return await transformFile(path, (buf: Buffer) => {
+    if (extension === "ts" || extension === "sass") return await transformFile(path, (buf: Buffer) => {
         const content = buf.toString("utf-8");
         const lines = content.split("\n");
         const newLines = [];

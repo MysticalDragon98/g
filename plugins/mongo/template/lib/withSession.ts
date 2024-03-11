@@ -1,8 +1,7 @@
 import { ClientSession } from "mongoose";
 import { dbSession } from "./dbSession";
-export default async function withSession (callback: (session: ClientSession) => any, session?: ClientSession) {
-    if (session) return await callback(session);
-    else {
+export default async function withSession (callback: (session?: ClientSession) => any, session?: ClientSession, mandatorySession?: boolean) {
+    if (mandatorySession) {
         const _session = await dbSession();
         try {
             const result = await callback(_session);
@@ -12,5 +11,9 @@ export default async function withSession (callback: (session: ClientSession) =>
             await _session.abortTransaction();
             throw exc;
         }
+    } else if (session === undefined) {
+        return await callback();
+    } else {
+        return await callback(session as ClientSession);
     }
 }

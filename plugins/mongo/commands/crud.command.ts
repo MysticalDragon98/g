@@ -17,6 +17,7 @@ export default async function crudCommand (project: Project, args: string[], opt
     const deleteManyFile = join("lib/mongo/crud", modelName, modelName + ".mongo-delete-many.ts");
     const createFile = join("lib/mongo/crud", modelName, modelName + ".mongo-create.ts");
     const aggregateFile = join("lib/mongo/crud", modelName, modelName + ".mongo-aggregate.ts");
+    const findFile = join("lib/mongo/crud", modelName, modelName + ".mongo-find.ts");
 
     await project.ensureDir(join("lib/mongo/crud", modelName));
 
@@ -34,4 +35,5 @@ export default async function crudCommand (project: Project, args: string[], opt
     await project.generateFileFromTemplate("mongo:delete-many.ts", deleteManyFile, { name: modelName });
     await project.generateFileFromTemplate("mongo:create.ts", createFile, { name: modelName });
     await project.generateFileFromTemplate("mongo:aggregate.ts", aggregateFile, { name: modelName });
+    await project.generateFileFromTemplate("mongo:find.ts", findFile, { name: modelName });
 }

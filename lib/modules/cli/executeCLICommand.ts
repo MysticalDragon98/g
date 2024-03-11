@@ -3,12 +3,14 @@ import CLICommandOptions from "../../interfaces/CLICommandOptions.interface";
 import { FilePath } from "../../types/FilePath.type";
 import initCommand from "../commands/initCommand";
 import pluginCommand from "../commands/pluginCommand";
+import helpCommand from "../commands/helpCommand";
 
 const Commands: {
     [key: string]: (args: string[], { options }: CLICommandOptions) => Promise<void>;
 } = {
     init: initCommand,
-    plugin: pluginCommand
+    plugin: pluginCommand,
+    help: helpCommand
     //* Commands
 };
 

@@ -3,7 +3,7 @@ import { {{varCap name}}Model, {{varCap name}} } from "../../models/{{name}}.mon
 {{#if isFieldObjectId}}import { ObjectId } from "mongoose"; {{/if}}
 import { ClientSession } from "mongoose";
 
-export async function get{{varCap name}} ({{var name}}Id: {{fieldType}} | {{varCap name}}, session?: ClientSession | boolean) {
+export async function get{{varCap name}} ({{var name}}Id: {{fieldType}} | {{varCap name}} | string, session?: ClientSession): Promise<{{varCap name}}> {
     return await withSession(async (session?: ClientSession) => {
         if ({{var name}}Id.constructor.name === "model") {
             return {{var name}}Id as {{varCap name}};

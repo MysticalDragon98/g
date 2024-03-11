@@ -9,7 +9,7 @@ import getPluginPath from "../../lib/modules/plugins/getPluginPath";
 export default async function (project: Project, options: { port?: string }) {
     const pluginPath = await getPluginPath("http");
     
-    await installTSDependencies(["@mysticaldragon/unete"]);
+    await installTSDependencies(["@olptools/http-server"]);
 
     await project.addEnvvar("HTTP_PORT", {
         required: true,

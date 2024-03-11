@@ -5,7 +5,7 @@ import { $ok } from "../../../lib/exceptions";
 import { log } from "console";
 //* Imports
 
-export default async function typeCommand (project: Project, args: string[], options: any) {
+export default async function typeCommand (project: Project, args: string[], options: { unique?: boolean, folder?: FilePath }) {
     let tName: string;
     let folderPath: FilePath;
     let tPath: FilePath;
@@ -25,10 +25,11 @@ export default async function typeCommand (project: Project, args: string[], opt
     }
 
     await project.generateFileFromTemplate("type.ts", tPath, {
-        name: tName
+        name: tName,
+        unique: options.unique
     });
 
     await project.vscodeOpen(tPath);
     
-    log(`Successfully created class ${tName} at ${tPath}.`);
+    log(`Successfully created type ${tName} at ${tPath}.`);
 }

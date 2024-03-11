@@ -1,0 +1,11 @@
+@startuml mango
+package "Mango / Bancoo" {
+    package "Mango" {
+        class Mango
+    }
+    package "Bancoo" {
+        class Bancood
+    }
+    Mango -[hidden]-- Bancoo
+}
+@enduml
