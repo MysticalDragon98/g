@@ -4,6 +4,7 @@ import { FilePath } from "../../types/FilePath.type";
 import initCommand from "../commands/initCommand";
 import pluginCommand from "../commands/pluginCommand";
 import helpCommand from "../commands/helpCommand";
+//* Imports
 
 const Commands: {
     [key: string]: (args: string[], { options }: CLICommandOptions) => Promise<void>;
