@@ -1,0 +1,5 @@
+{
+    "id": "state-machines",
+    "name": "State Machines",
+    "projectTypes": ["ts"]
+}

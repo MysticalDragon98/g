@@ -1,0 +1,5 @@
+{
+    "id": "repl",
+    "name": "REPL",
+    "projectTypes": ["ts"]
+}

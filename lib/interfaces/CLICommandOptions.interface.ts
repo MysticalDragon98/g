@@ -1,3 +1,3 @@
 export default interface CLICommandOptions {
-    options: { [key: string]: string }
+    options: { [key: string]: any }
 }

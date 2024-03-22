@@ -1,0 +1,5 @@
+{
+    "id": "web3",
+    "name": "Web3",
+    "projectTypes": ["ts"]
+}

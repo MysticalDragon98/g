@@ -4,6 +4,7 @@ import { FilePath } from "../../types/FilePath.type";
 import initCommand from "../commands/initCommand";
 import pluginCommand from "../commands/pluginCommand";
 import helpCommand from "../commands/helpCommand";
+import gadgetCommand from "../commands/gadget.command";
 //* Imports
 
 const Commands: {
@@ -11,7 +12,8 @@ const Commands: {
 } = {
     init: initCommand,
     plugin: pluginCommand,
-    help: helpCommand
+    help: helpCommand,
+    gadget: gadgetCommand,
     //* Commands
 };
 
@@ -21,7 +23,7 @@ export default async function executeCLICommand (args: string[], { options }: CL
     if (Commands[command]) {
         return await Commands[command](cliArgs, { options });
     }
-    
+
     if (await Project.isProject(process.cwd() as FilePath)) {
         const project = await Project.fromPath(process.cwd() as FilePath);
 

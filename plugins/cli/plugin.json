@@ -1,0 +1,5 @@
+{
+    "id": "cli",
+    "name": "Command Line Interface",
+    "projectTypes": ["ts"]
+}

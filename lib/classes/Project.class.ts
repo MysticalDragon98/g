@@ -11,6 +11,9 @@ import parseHandlebarsTemplate from "../modules/templates/parseHandlebarsTemplat
 import vscodeOpen from "../modules/vscode/vscodeOpen";
 import getPluginPath from "../modules/plugins/getPluginPath";
 import { $ok } from "../exceptions";
+import dirExists from "../modules/fs/dirExists";
+import pluginExists from "../modules/plugins/pluginExists";
+import Paths from "../const/Paths.const";
 
 export default class Project {
 
@@ -98,13 +101,14 @@ export default class Project {
 
             await commandModule.default(this, args, options);
         } catch (e) {
-            throw new Error(`Error executing command ${command}: ${e.message}\n${e.stack}`);
+            if (e.message ?? e.stacl) throw new Error(`Error executing command ${command}: ${e.message}\n${e.stack}`);
+            else throw e;
         }
     }
 
     async ensureDir (path: FilePath | string) {
         log(`Ensuring directory ${this.subPath(path)}...`);
-        await exec(`mkdir -p ${this.subPath(path)}`);
+        await exec(`mkdir -p "${this.subPath(path)}"`);
     }
 
     async parsePluginTemplate (plugin: PluginID | string, templateName: string, data: any = {}) {
@@ -198,5 +202,38 @@ export default class Project {
         } catch (e) {
             return false;
         }
+    }
+
+    async installPlugin (pluginId: PluginID) {
+        const project = this;
+        const workdir = this.path;
+        const pluginPath = await getPluginPath(pluginId);
+
+        $ok(await pluginExists(pluginId), `Plugin ${pluginId} does not exist.`);
+
+        log(`Installing ${pluginId} plugin in ${workdir}...`);
+
+        const pluginInitializer = await import(join(pluginPath, "index.ts")) as { default: (project: Project, options?: any) => Promise<void> };
+        await pluginInitializer.default(project, {});
+
+        project.plugins.push(pluginId);
+        await project.save();
+
+        log(`Successfully installed ${pluginId} plugin in ${workdir}.`);
+    }
+
+    async initType () {
+        const projectType = this.type;
+        const project = this;
+        const workdir = this.path;
+        const projectTypePath = await join(Paths.projectTypes, projectType);
+
+        const projectInitializer = await import(join(projectTypePath, "index.ts")) as { default: (project: Project, options?: any) => Promise<void> };
+
+        log(`Initializing ${projectType} project in ${workdir}...`);
+
+        await projectInitializer.default(project, {});
+
+        log(`Successfully initialized ${projectType} project in ${workdir}.`);
     }
 }

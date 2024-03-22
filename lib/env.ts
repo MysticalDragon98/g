@@ -1,5 +1,6 @@
 import { config } from "dotenv";
-import { ok } from "assert";
+import { resolve } from "path";
 
-config();
+config({ path: resolve(__dirname, "../.env") });
 
+export const $LOGS_FOLDER = process.env.LOGS_FOLDER;

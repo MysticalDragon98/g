@@ -1,0 +1,5 @@
+{
+    "id": "whatsapp",
+    "name": "Whatsapp Web",
+    "projectTypes": ["ts"]
+}

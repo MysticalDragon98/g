@@ -1,0 +1,5 @@
+{
+    "id": "http-proxies",
+    "name": "HTTP Proxies",
+    "projectTypes": ["ts", "angular"]
+}

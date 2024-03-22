@@ -10,20 +10,11 @@ import Project from "../../classes/Project.class";
 import { log } from "termx";
 
 export default async function pluginCommand (args: string[], { options }: CLICommandOptions) {
-    const [ pluginId ] = args as [PluginID];
     const workdir = process.cwd() as FilePath;
-    const pluginPath = await getPluginPath(pluginId);
-
-    $ok(pluginId, `Plugin not specified.`);
-    $ok(await pluginExists(pluginId), `Plugin ${pluginId} does not exist.`);
-
     const project = await Project.fromPath(workdir);
+    const [ pluginId ] = args;
 
-    const pluginInitializer = await import(join(pluginPath, "index.ts")) as { default: (project: Project, options?: any) => Promise<void> };
-    await pluginInitializer.default(project, options);
-
-    project.plugins.push(pluginId);
-    await project.save();
-
-    log(`Successfully installed ${pluginId} plugin in ${workdir}.`);
+    $ok(pluginId, `Usage: g plugin <plugin-id>`);
+    
+    await project.installPlugin(pluginId as PluginID);
 }

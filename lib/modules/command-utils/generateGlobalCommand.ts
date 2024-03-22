@@ -3,6 +3,7 @@ import CLICommandOptions from "../../interfaces/CLICommandOptions.interface";
 import Project from "../../classes/Project.class";
 import { FilePath } from "../../types/FilePath.type";
 import insertTagLine from "../fs/insertTagLine";
+import vscodeOpen from "../vscode/vscodeOpen";
 
 export async function generateGlobalCommand (args: string[], { options }: CLICommandOptions) {
     const project = await Project.fromPath(process.cwd() as FilePath);
@@ -13,7 +14,7 @@ export async function generateGlobalCommand (args: string[], { options }: CLICom
     const fnPath = `lib/modules/commands/${commandName}.command.ts`;
     const commandsIndexFile = "lib/modules/cli/executeCLICommand.ts";
     
-    await project.generateFileFromTemplate("g:global-command.ts", fnPath, {
+    await project.generateFileFromTemplate("g:global-command.command.ts", fnPath, {
         name: commandName
     });
 
@@ -28,4 +29,6 @@ export async function generateGlobalCommand (args: string[], { options }: CLICom
         "Commands",
         `"${commandName}": ${commandName}Command,`
     );
+
+    vscodeOpen(project.subPath(fnPath));
 }

@@ -1,0 +1,5 @@
+{
+    "id": "jwt",
+    "name": "Json Web Token",
+    "projectTypes": ["ts"]
+}

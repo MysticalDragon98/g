@@ -18,6 +18,7 @@ export default async function pluginCommand (project: Project, args: string[], o
     await project.ensureDir(join(folder, "commands"));
 
     await project.generateFileFromTemplate("g:initializer.ts", join(folder, "index.ts"), {});
+    await project.generateFileFromTemplate("g:plugin.json", join(folder, "plugin.json"), { id: pluginId });
 
     await project.vscodeOpen(join(folder, "index.ts"));
 }

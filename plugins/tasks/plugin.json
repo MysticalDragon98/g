@@ -1,0 +1,5 @@
+{
+    "id": "tasks",
+    "name": "Task Engine",
+    "projectTypes": ["ts"]
+}

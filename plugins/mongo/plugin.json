@@ -1,0 +1,5 @@
+{
+    "id": "mongo",
+    "name": "MongoDB",
+    "projectTypes": ["ts"]
+}

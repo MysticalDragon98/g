@@ -1,9 +1,13 @@
-import { connect } from "mongoose";
+
+import { Mongoose, connect } from "mongoose";
 import { $MONGO_URI } from "../../lib/env";
-import { log } from "termx";
+import { createModuleInspector } from "@olptools/inspector";
 
+const inspector = createModuleInspector("MONGO");
+
+export let MongoConnection: Mongoose = null;
 export async function initDatabaseConnection () {
-    await connect($MONGO_URI);
+    MongoConnection = await connect($MONGO_URI);
 
-    log("Connected to database!");
+    inspector.method("connect").log({ type: "success" });
 }
