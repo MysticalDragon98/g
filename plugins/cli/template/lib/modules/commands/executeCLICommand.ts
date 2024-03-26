@@ -8,7 +8,7 @@ export default async function executeCLICommand (args: string[], { options }: CL
     let command = "";
 
     for (let i=0;i<args.length;i++) {
-        const currentArg = args[i];
+        const currentArg = args[i].toString();
 
         try {
             await access(join(folder, currentArg));
