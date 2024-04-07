@@ -1,0 +1,7 @@
+node_modules/
+.env
+.yarn/
+cache/
+artifacts/
+ignition/parameters.json
+typechain-types

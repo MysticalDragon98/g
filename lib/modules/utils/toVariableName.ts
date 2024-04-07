@@ -7,7 +7,7 @@ export default function toVariableName (name: string, { capitalize = false, cons
         }
 
         name = name.split("").map((char, i) => {
-            if (char === char.toUpperCase()) {
+            if (char === char.toUpperCase() && /[a-zA-Z]/.test(char)) {
                 return i === 0 ? char : `_${char}`;
             }
 

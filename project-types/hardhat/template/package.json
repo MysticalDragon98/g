@@ -1,0 +1,33 @@
+{
+  "name": "template",
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "@nomicfoundation/hardhat-ignition": "^0.15.0",
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.5",
+    "@nomicfoundation/ignition-core": "^0.15.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
+    "hardhat": "^2.22.2",
+    "mocha": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.2"
+  },
+  "scripts": {
+    "build": "npm run build:types",
+    "build:types": "hardhat typechain",
+    "compile": "hardhat compile",
+    "deploy": "sh .scripts/deploy.sh",
+    "deployment": "sh .scripts/deployment.sh",
+    "env": "sh .scripts/env.sh",
+    "test": "sh .scripts/test.sh"
+  }
+}
