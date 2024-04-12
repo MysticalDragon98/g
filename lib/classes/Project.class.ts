@@ -52,6 +52,10 @@ export default class Project {
         return vscodeOpen(this.subPath(path));
     }
 
+    async option (key: string) {
+        return this.options[key];
+    }
+
     async setOption (key: string, value: any) {
         this.options[key] = value;
         
@@ -186,7 +190,7 @@ export default class Project {
         const file = await readFile(join(path, "project.json"), "utf-8");
         const { type, plugins } = JSON.parse(file);
 
-        return new Project(path, type, plugins);
+        return new Project(path, type, plugins, JSON.parse(file));
     }
 
     public static async init (path: FilePath, type: ProjectType): Promise<Project> {

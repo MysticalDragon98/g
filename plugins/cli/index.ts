@@ -14,6 +14,7 @@ export default async function (project: Project, options: any) {
     await installTSDependencies(["minimist"]);
 
     await project.ensureDir("plugins/cli");
+    await project.ensureDir("lib/cli/docs");
     await project.ensureDir("lib/cli/commands");
 
     await copyDir(<FilePath>join(pluginPath, "template"), project.subPath("plugins/cli"));

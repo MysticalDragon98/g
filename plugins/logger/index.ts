@@ -4,9 +4,8 @@ import { installTSDependencies } from "../../project-types/ts/lib/modules/utils/
 //* Imports
 
 export default async function (project: Project, options: any) {
-    await project.addEnvvar("INSPECTOR_LOGS", { required: true });
     await installTSDependencies([
-        "@olptools/inspector"
+        "@coretools/inspector"
     ]);
 
     await project.ensureDir("lib/logger")

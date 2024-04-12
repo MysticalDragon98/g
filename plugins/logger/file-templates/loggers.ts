@@ -1,6 +1,6 @@
-import { createModuleInspector } from '@olptools/inspector';
-import { IMethodInspector } from '@olptools/inspector/dist/src/createMethodInspector';
-import { ModuleInspectorMessage } from '@olptools/inspector/dist/src/createModuleInspector';
+import { createModuleInspector } from '@coretools/inspector';
+import { IMethodInspector } from '@coretools/inspector/dist/src/createMethodInspector';
+import { ModuleInspectorMessage } from '@coretools/inspector/dist/src/createModuleInspector';
 
 interface IModuleInspector {
     log: (data: ModuleInspectorMessage) => Promise<void>;

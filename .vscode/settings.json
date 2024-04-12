@@ -1,42 +1,47 @@
 {
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    ".yarn": true,
-    ".pnp.cjs": true,
-    ".pnp.loader.mjs": true,
-    "yarn.lock": true,
-    "tsconfig.json": true,
-    "project.json": true
-  },
-  "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
-  },
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#bbf2d1",
-    "activityBar.background": "#bbf2d1",
-    "activityBar.foreground": "#15202b",
-    "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#a479e5",
-    "activityBarBadge.foreground": "#15202b",
-    "commandCenter.border": "#15202b99",
-    "sash.hoverBorder": "#bbf2d1",
-    "statusBar.background": "#90eab4",
-    "statusBar.foreground": "#15202b",
-    "statusBarItem.hoverBackground": "#65e297",
-    "statusBarItem.remoteBackground": "#90eab4",
-    "statusBarItem.remoteForeground": "#15202b",
-    "titleBar.activeBackground": "#90eab4",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#90eab499",
-    "titleBar.inactiveForeground": "#15202b99"
-  },
-  "peacock.color": "#90eab4"
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".yarn": true,
+        ".pnp.cjs": true,
+        ".pnp.loader.mjs": true,
+        "yarn.lock": true,
+        "tsconfig.json": true,
+        "project.json": true
+    },
+    "search.exclude": {
+        "**/.yarn": true,
+        "**/.pnp.*": true
+    },
+    "typescript.tsdk": ".yarn/sdks/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "peacock.color": "#8cf5c6",
+    "_.theme": "tools",
+    "workbench.colorCustomizations": {
+        "commandCenter.border": "#15202b99",
+        "sash.hoverBorder": "#bbf9dd",
+        "statusBar.background": "#8cf5c6",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#5df1af",
+        "statusBarItem.remoteBackground": "#8cf5c6",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#8cf5c6",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#8cf5c699",
+        "titleBar.inactiveForeground": "#15202b99",
+        "statusBar.border": "#8cf5c6",
+        "tab.activeBorder": "#bbf9dd",
+        "titleBar.border": "#8cf5c6"
+    },
+    "peacock.affectTitleBar": true,
+    "peacock.affectStatusAndTitleBorders": true,
+    "peacock.affectTabActiveBorder": true,
+    "peacock.affectSideBarBorder": false,
+    "peacock.affectPanelBorder": false,
+    "peacock.affectEditorGroupBorder": false,
+    "peacock.affectActivityBar": false
 }
