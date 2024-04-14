@@ -10,5 +10,8 @@ export default async function modelCommand (project: Project, args: string[], op
         name: modelName
     });
 
-    await project.vscodeOpen(file);
+    await project.vscodeOpen(file, {
+        line: 6,
+        character: 5
+    });
 }

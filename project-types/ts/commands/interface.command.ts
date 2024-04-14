@@ -29,7 +29,10 @@ export default async function interfaceCommand (project: Project, args: string[]
         name: iName
     });
 
-    await project.vscodeOpen(iPath);
+    await project.vscodeOpen(iPath, {
+        line: 2,
+        character: 5
+    });
     
     log(`Successfully created interface ${iName} at ${iPath}.`);
 }

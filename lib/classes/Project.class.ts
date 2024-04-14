@@ -48,8 +48,8 @@ export default class Project {
         return exec(command, this.path);
     }
 
-    vscodeOpen (path: string) {
-        return vscodeOpen(this.subPath(path));
+    vscodeOpen (path: string, { line = 0, character = 0 }: { line?: number, character?: number } = {}) {
+        return vscodeOpen(this.subPath(path), { line, character });
     }
 
     async option (key: string) {

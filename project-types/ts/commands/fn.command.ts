@@ -32,7 +32,10 @@ export default async function fnCommand (project: Project, args: string[], optio
         name: fnName
     });
 
-    await project.vscodeOpen(fnPath);
+    await project.vscodeOpen(fnPath, {
+        line: 2,
+        character: 5
+    });
     
     log(`Successfully created function ${fnName} at ${fnPath}.`);
 }
