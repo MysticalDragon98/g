@@ -1,5 +1,8 @@
 {
-  "type": "ts",
-  "plugins": ["g"],
-  "options": {}
+    "type": "ts",
+    "plugins": [
+        "g"
+    ],
+    "options": {},
+    "version": "0.1.2"
 }
