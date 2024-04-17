@@ -7,6 +7,12 @@ export default async function executeCLICommand (args: string[], { options }: CL
     let cliArgs = [];
     let command = "";
 
+    if (options.help || args.length === 0 || options.h) {
+        command = "help";
+        cliArgs = [args[0] ?? typeof options.help === "string" ? options.help : null].filter(Boolean);
+        options["simple"] = <any>true;
+    }
+
     for (let i=0;i<args.length;i++) {
         const currentArg = args[i].toString();
 
