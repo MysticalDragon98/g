@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- [2024-04-27] <Angular> Added `g style-module` and `g style` command, for allowing the user to organize their styles
 - [2024-04-27] <CLI Plugin> created print, printData, printJSON and printMessage functions to print data in the cli, depending of the output that the system is expecting
 - [2024-04-27] <CLI Plugin> Now the cli plugin by default detects the --json, --raw and --silent flags.  It also detects whether the console is a tty or not
 - [2024-04-27] g:command now opens the file in the right line & char
