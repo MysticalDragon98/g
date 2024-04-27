@@ -16,5 +16,8 @@ export default async function commandCommand (project: Project, args: string[], 
         name
     });
     
-    await project.vscodeOpen(fnPath);
+    await project.vscodeOpen(fnPath, {
+        line: 6,
+        character: 3
+    });
 }
