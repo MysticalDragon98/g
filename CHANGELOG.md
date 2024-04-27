@@ -8,10 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- [2024-04-27] When opening a file with the editor, the system can now detect which editor are you using and opens it with it
 - [2024-04-27] Added option for the template generators of telling in which line & chart should the cursor start when the file is opened by the text editor
 
 
 ### Fixed
+- [2024-04-27] Fix bug where the default cli config file was not exporting the object, but creating a json file instead
 - [2024-04-14] Removed not-found import that was preventing the installation of `http` plugin
 
 ## [0.1.0] - 2024-04-14

@@ -20,14 +20,14 @@ export default async function (project: Project, options: any) {
     await project.ensureDir("lib/cli/commands");
 
     await copyDir(<FilePath>join(pluginPath, "template"), project.subPath("plugins/cli"));
-    await writeFile(project.subPath("cli.config.ts"), JSON.stringify({
+    await writeFile(project.subPath("cli.config.ts"), "export default " + JSON.stringify({
         name: "",
         command: "",
         tagline: "",
         usage: "",
         description: [],
         examples: []
-    }));
+    }, null ,2));
 
-    await project.generateFileFromTemplate("cli:help.command.ts", "lib/cli/commands/help.command.ts", {});
+    await project.generateFileFromTemplate("cli:help.command.ts", "lib/cli/commands/help.cli-command.ts", {});
 }
