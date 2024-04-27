@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- [2024-04-27] Added option for the template generators of telling in which line & chart should the cursor start when the file is opened by the text editor
+
+
 ### Fixed
 - [2024-04-14] Removed not-found import that was preventing the installation of `http` plugin
 
-## [0.1.0] - 2024-04-14 (The CLI update)
+## [0.1.0] - 2024-04-14
 
 ### Added
 - [2024-04-14] Added options for set line & character when opening a generated file with vscode

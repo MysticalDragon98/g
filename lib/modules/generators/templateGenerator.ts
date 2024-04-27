@@ -9,6 +9,8 @@ export interface ITemplateGeneratorOptions {
     usage: string;
 
     open?: boolean;
+    line?: number;
+    character?: number;
 }
 
 export default function templateGenerator<T> (generatorOptions: ITemplateGeneratorOptions) {
@@ -22,7 +24,10 @@ export default function templateGenerator<T> (generatorOptions: ITemplateGenerat
         await project.generateFileFromTemplate(template, path, handlebarsData);
 
         if (open !== false) {
-            await project.vscodeOpen(path);
+            await project.vscodeOpen(path, {
+                line: generatorOptions.line,
+                character: generatorOptions.character
+            });
         }
 
         log(`Successfully created ${path}.`);
