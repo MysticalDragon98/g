@@ -1,7 +1,7 @@
 interface IOptions {
-
+    
 }
 
-export default async function {{var name}}REPLCommand (args: string[], options: IOptions) {
-    //* TODO
+export default async function {{var name}}REPLCommand ([ ]: string[], options: IOptions) {
+    
 }
