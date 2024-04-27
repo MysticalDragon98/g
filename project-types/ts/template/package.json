@@ -9,7 +9,7 @@
     "termx": "^1.2.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
-    "@olptools/inspector": "^1.0.4"
+    "@coretools/inspector": "^1.0.2"
   },
   "scripts": {
     "start": "ts-node index.ts"
