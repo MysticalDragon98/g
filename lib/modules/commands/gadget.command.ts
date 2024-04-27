@@ -37,7 +37,7 @@ export default async function gadgetCommand (args: string[], { options }: { opti
     const project = await Project.init(folderPath, projectType.id);
     const gadgetFile = project.subPath("gadget.json");
 
-    await project.initType();
+    await project.initType(options);
 
     for (const plugin of plugins) {
         await project.installPlugin(plugin.id);

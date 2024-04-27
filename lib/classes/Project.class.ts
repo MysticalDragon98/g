@@ -226,7 +226,7 @@ export default class Project {
         log(`Successfully installed ${pluginId} plugin in ${workdir}.`);
     }
 
-    async initType () {
+    async initType (options: any) {
         const projectType = this.type;
         const project = this;
         const workdir = this.path;
@@ -236,7 +236,7 @@ export default class Project {
 
         log(`Initializing ${projectType} project in ${workdir}...`);
 
-        await projectInitializer.default(project, {});
+        await projectInitializer.default(project, options);
 
         log(`Successfully initialized ${projectType} project in ${workdir}.`);
     }

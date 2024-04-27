@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [2024-04-27] <TS> Changed @olptools/logger to @coretools/logger because it doesnt store log files by default
 
+
+### Fixed
+- [2024-04-27] <G> Fix error at `g:init` command where options were not propagated to the initialization file
+
 ## [0.1.1] - 2024-04-27
 
 ### Added

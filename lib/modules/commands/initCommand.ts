@@ -15,6 +15,6 @@ export default async function initCommand (args: string[], { options }: CLIComma
 
     const project = await Project.init(workdir, projectType);
     
-    await project.initType();
+    await project.initType(options);
     await project.save();
 }
