@@ -1,0 +1,3 @@
+{{varSnake name}} () {
+
+}

@@ -12,7 +12,6 @@ export default async function (project: Project, options: any) {
 
     await installTSDependencies([ "@mysticaldragon/proxies", "axios" ]);
     await project.ensureDir("plugins/http-proxies");
-    await project.ensureDir("lib/http-proxies");
     
     await copyDir(<FilePath>join(pluginPath, "template"), project.subPath("plugins/http-proxies"));
 }

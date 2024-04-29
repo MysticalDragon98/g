@@ -8,9 +8,12 @@ import exec from "../../lib/modules/sh/exec";
 import { log } from "termx";
 import transformJsonFile from "../../lib/modules/fs/transformJsonFile";
 import setJSONFileFields from "../../lib/modules/fs/setJSONFileFields";
+import { unlink, writeFile } from "fs/promises";
+import inquirer from "inquirer";
+import { installTSDependencies } from "./lib/modules/utils/installTSDependencies";
 
-export default async function initTSProject (project: Project, options: { esm?: boolean }) {
-    console.log("Initializing TS project...");
+export default async function initTSProject (project: Project, options: { esm?: boolean, lib?: boolean }) {
+    log("Initializing TS project...");
 
     await gitInit(project.path);
     await copyDir(join(project.projectTypePath(), "template") as FilePath, project.path);
@@ -34,5 +37,53 @@ export default async function initTSProject (project: Project, options: { esm?: 
             target: "ES2021",
             module: "ES2022"
         });
+    }
+
+    if (!options.lib) {
+        //? In applications, we need ts-node to run the project
+        await installTSDependencies([
+            "ts-node"
+        ], { dev: true });
+    }
+
+    if (options.lib) {
+        //? In libraries, we don't create an auto executable index file
+        log("Setting up library project...");
+        await writeFile(project.subPath("index.ts"), "//* Exports");
+        
+        log("Setting up package.json...");
+        await transformJsonFile(project.subPath("package.json"), async json => {
+            const { libraryName } = await inquirer.prompt([
+                {
+                    type: "input",
+                    name: "libraryName",
+                    message: "What's the name of your library:",
+                    validate: (value: string) => {
+                        if (!value) return "Please enter a name for your library";
+                        return true;
+                    }
+                }
+            ])
+
+            json.name = libraryName;
+            json.main = "dist/index.js";
+            json.types = "dist/index.d.ts";
+            json.scripts = {
+                "build": "tsc",
+                "prepublish": "npm run build"
+            };
+
+            //? On libraries, we don't need any dependencies
+            json.dependencies = {};
+
+            //? On libraries, some files are not needed
+            await unlink(project.subPath("lib/env.ts"));
+            await unlink(project.subPath("lib/exceptions.ts"));
+
+            return json;
+        });
+
+        log("Setting up tsconfig.json...");
+        await writeFile(project.subPath(".npmignore"), "node_modules/\n.env\n.docs\nsample");
     }
 }

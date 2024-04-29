@@ -1,6 +1,13 @@
 import { ElasticProxy } from "@mysticaldragon/proxies";
 import Axios from "axios";
-export const HTTPProxy = (url: string, timeout?: number) => 
+
+interface Options {
+    timeout?: number;
+    headers?: Record<string, string>;
+    resultParser?: (result: any) => any;
+    errorParser?: (error: any) => any;
+}
+export const HTTPProxy = (url: string, options: Options = {}) => 
     ElasticProxy.newRecursive({
         recursive:  true,
         
@@ -8,27 +15,31 @@ export const HTTPProxy = (url: string, timeout?: number) =>
             let time = Date.now();
             return new Promise (async (resolve, reject) => {
                 const reqpath = url + "/" + path.join("/").toLowerCase();
-                if (timeout) {
-                    setTimeout(() => reject(new Error("Request " + reqpath + " timed out")), timeout);
+                if (options.timeout) {
+                    setTimeout(() => reject(new Error("Request " + reqpath + " timed out")), options.timeout);
                 }
                 try {
                     const response = await Axios.post(
                         reqpath,
                         args[0],
-                        { headers: { Accept: 'application/json' } }
+                        { headers: { Accept: 'application/json', ...(options.headers ?? {})  } }
                     );
                     
                     // logger.debug("Request to " + reqpath + " took " + (Date.now() - time) + "ms");
-                    resolve(response.data.result);
+                    if (options.resultParser) resolve(await options.resultParser(response.data));
+                    else resolve(response.data.result);
                 } catch (exc: any) {
-                    if (exc.response && exc.response.data && exc.response.data.error)
-                        reject(new Error(exc.response.data.error));
+                    if (options.errorParser) reject("Request " + reqpath + " failed: " + options.errorParser(exc));
+                    else if (exc.response && exc.response.data && exc.response.data.error && typeof exc.response.data.error === "string") 
+                        reject(new Error("Request " + reqpath + " failed: " + exc.response.data.error));
+                    else if (exc.response && exc.response.data && exc.response.data.error)
+                        reject(new Error("Request " + reqpath + " failed: " + JSON.stringify(exc.response.data.error)));
                     else if (exc.response && exc.response.data && exc.response.data.message)
-                        reject(new Error(exc.response.data.message));
+                        reject(new Error("Request " + reqpath + " failed: " + exc.response.data.message));
                     else if (exc.response && exc.response.status)
                         reject(new Error("Request " + reqpath + " failed with status code: " + exc.response.status));
                     else
-                        reject(exc);
+                        reject(new Error("Request " + reqpath + " failed: " + exc.message));
                 }
             });
         }

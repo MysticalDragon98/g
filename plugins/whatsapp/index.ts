@@ -11,11 +11,13 @@ export default async function (project: Project, options: { skipInstall?: boolea
 
     await installTSDependencies([
         "whatsapp-web.js",
-        "qrcode-terminal"  
+        "qrcode-terminal",
+        "handlebars"
     ], {});
 
     await project.ensureDir("plugins/whatsapp");
     await project.ensureDir("lib/whatsapp/events");
+    await project.ensureDir("lib/whatsapp/templates");
     
     await copyDir(<FilePath>join(pluginPath, "template"), project.subPath("plugins/whatsapp"));
     await project.generateFileFromTemplate("whatsapp:onIncomingWhatsappMessage.ts", "lib/whatsapp/events/onIncomingWhatsappMessage.whatsapp-event.ts", {});
