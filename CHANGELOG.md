@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- [2024-04-29] Create multi-template generator for generating more than one file
 - [2024-04-29] Template generator now receives after & before generate hooks
 
 
