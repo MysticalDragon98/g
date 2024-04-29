@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+### Added
+- [2024-04-29] Template generator now receives after & before generate hooks
+
+
 ### Changed
 - [2024-04-27] <TS> Changed @olptools/logger to @coretools/logger because it doesnt store log files by default
 
@@ -15,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [2024-04-27] <G> Fix error at `g:init` command where options were not propagated to the initialization file
 
 ## [0.1.1] - 2024-04-27
+
 
 ### Added
 - [2024-04-27] <Angular> Added `g style-module` and `g style` command, for allowing the user to organize their styles
@@ -34,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [2024-04-14] Removed not-found import that was preventing the installation of `http` plugin
 
 ## [0.1.0] - 2024-04-14
+
 
 ### Added
 - [2024-04-14] Added options for set line & character when opening a generated file with vscode
