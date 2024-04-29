@@ -8,9 +8,10 @@ interface IOptions {
     global?: string;
     plugin?: string;
     template?: string;
+    templates?: string;
 }
 
-export default async function commandCommand (project: Project, args: string[], options: { global?: string, plugin?: string, template?: string } = {}) {
+export default async function commandCommand (project: Project, args: string[], options: IOptions = {}) {
     const { plugin } = options;
     const [ parentType, commandName ] = args;
 
