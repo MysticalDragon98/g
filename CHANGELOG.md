@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- [2024-04-29] Create sh & whatsapp project types
 - [2024-04-29] Add SH support for the insertTagLine function, so it supports # based comments
 - [2024-04-29] Added snakeCase support for handlebars varname as {{snakeCase varname}}
 - [2024-04-29] Create multi-template generator for generating more than one file
