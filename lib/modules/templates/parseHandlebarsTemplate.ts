@@ -12,3 +12,4 @@ export default function parseHandlebarsTemplate (template: string, data: any) {
 Handlebars.registerHelper("var", (str) => toVariableName(str));
 Handlebars.registerHelper("varCap", (str) => toVariableName(str, { capitalize: true }));
 Handlebars.registerHelper("varConst", (str) => toVariableName(str, { constCase: true }));
+Handlebars.registerHelper("varSnake", (str) => toVariableName(str, { snakeCase: true }));
