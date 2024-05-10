@@ -18,30 +18,5 @@
         "**/.pnp.*": true
     },
     "typescript.tsdk": ".yarn/sdks/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "peacock.color": "#8cf5c6",
-    "_.theme": "tools",
-    "workbench.colorCustomizations": {
-        "commandCenter.border": "#15202b99",
-        "sash.hoverBorder": "#bbf9dd",
-        "statusBar.background": "#8cf5c6",
-        "statusBar.foreground": "#15202b",
-        "statusBarItem.hoverBackground": "#5df1af",
-        "statusBarItem.remoteBackground": "#8cf5c6",
-        "statusBarItem.remoteForeground": "#15202b",
-        "titleBar.activeBackground": "#8cf5c6",
-        "titleBar.activeForeground": "#15202b",
-        "titleBar.inactiveBackground": "#8cf5c699",
-        "titleBar.inactiveForeground": "#15202b99",
-        "statusBar.border": "#8cf5c6",
-        "tab.activeBorder": "#bbf9dd",
-        "titleBar.border": "#8cf5c6"
-    },
-    "peacock.affectTitleBar": true,
-    "peacock.affectStatusAndTitleBorders": true,
-    "peacock.affectTabActiveBorder": true,
-    "peacock.affectSideBarBorder": false,
-    "peacock.affectPanelBorder": false,
-    "peacock.affectEditorGroupBorder": false,
-    "peacock.affectActivityBar": false
+    "typescript.enablePromptUseWorkspaceTsdk": true
 }
