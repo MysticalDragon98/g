@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import executeCLICommand from "./lib/modules/cli/executeCLICommand";
 import Minimist from "minimist";
 //* Imports
