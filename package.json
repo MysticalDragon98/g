@@ -19,9 +19,9 @@
         "web3": "^4.4.0"
     },
     "scripts": {
-        "start": "ts-node index.ts"
+        "start": "ts-node index.ts",
+        "build": "tsc"
     },
-    "packageManager": "yarn@4.1.1",
     "devDependencies": {
         "@types/inquirer": "^9.0.7",
         "@types/node": "^20.11.28"
