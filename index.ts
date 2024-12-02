@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 
 import executeCLICommand from "./lib/modules/cli/executeCLICommand";
 import Minimist from "minimist";

@@ -11,9 +11,9 @@ export async function installTSDependencies (dependencies: string[], options: { 
         });*/
     } else {
         if (options.dev) {
-            await executeShCommand(`yarn add -D ${dependencies.join(" ")}`);
+            await executeShCommand(`pnpm add -D ${dependencies.join(" ")}`);
         } else {
-            await executeShCommand(`yarn add ${dependencies.join(" ")}`);
+            await executeShCommand(`pnpm add ${dependencies.join(" ")}`);
         }
     }
 }

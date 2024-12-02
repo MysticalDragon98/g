@@ -6,23 +6,16 @@ import { log } from "console";
 //* Imports
 
 export default async function typeCommand (project: Project, args: string[], options: { unique?: boolean, folder?: FilePath }) {
-    let tName: string;
-    let folderPath: FilePath;
     let tPath: FilePath;
+    let moduleName = args[1]? args[0] : null;
+    let tName = args[1] ?? args[0];
+    let folder = options.folder ?? (moduleName? join("lib", "modules", moduleName, "types") : join("lib", "types")); 
 
-    if (options.folder) {
-        [ tName ] = args;
+    $ok(tName, "Usage: g type <type-name>");
+    await project.ensureDir(folder);
+    tPath = join(folder, `${tName}.type.ts`) as FilePath;
 
-        $ok(tName, "Usage: g type --folder folder <type-name>");
-        folderPath = options.folder;
-        tPath = join(folderPath, `${tName}.ts`) as FilePath;
-    } else {
-        [ tName ] = args;
-
-        tPath = join("lib/types", `${tName}.type.ts`) as FilePath;
-
-        $ok(tName, "Usage: g type <type-name>");
-    }
+    $ok(tName, "Usage: g type <type-name>");
 
     await project.generateFileFromTemplate("type.ts", tPath, {
         name: tName,

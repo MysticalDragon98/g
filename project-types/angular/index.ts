@@ -15,7 +15,7 @@ export default async function (project: Project, args: string[], options: any) {
     await createFile(project.subPath(".env"));
     await createFile(project.subPath(".gitignore"), "node_modules/\n.env\n.angular\n");
 
-    await exec("yarn install");
+    await exec("pnpm install");
 
     log("Successfully initialized Angular project.");
 }

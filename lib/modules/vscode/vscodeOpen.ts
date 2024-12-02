@@ -6,7 +6,7 @@ export default async function vscodeOpen (path: FilePath, { line = 0, character 
     try {
         const consoleName = getShellName();
 
-        if (consoleName === "code") {
+        if (consoleName === "code" || consoleName === "default") {
             if (line || character) {
                 await exec(`code -g "${path}:${line}:${character}"`)
             } else {

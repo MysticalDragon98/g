@@ -18,10 +18,10 @@ export default async function initTSProject (project: Project, options: { esm?: 
     await gitInit(project.path);
     await copyDir(join(project.projectTypePath(), "template") as FilePath, project.path);
     await createFile(project.subPath(".env"));
-    await createFile(project.subPath(".gitignore"), "node_modules/\n.env\n");
+    await createFile(project.subPath(".gitignore"), "node_modules/\n.env\ndist/\n");
 
     log("Installing dependencies...");
-    await exec("yarn install");
+    await exec("pnpm install");
 
     if (options.esm) {
         await project.setOption("esm", true);

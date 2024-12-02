@@ -5,4 +5,4 @@ default:
 	chmod +x ./dist/index.js
 
 install:
-	ln -sf $(current_dir)/dist/index.js ~/home/bin/g
+	ln -sf $(current_dir)/index.ts ~/home/bin/g

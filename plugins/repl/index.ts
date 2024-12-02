@@ -4,7 +4,6 @@ import copyDir from "../../lib/modules/fs/copyDir";
 import getPluginPath from "../../lib/modules/plugins/getPluginPath";
 import { PluginID } from "../../lib/types/PluginID.type";
 import { FilePath } from "../../lib/types/FilePath.type";
-import executeShCommand from "../../lib/modules/sh/executeShCommand";
 import { installTSDependencies } from "../../project-types/ts/lib/modules/utils/installTSDependencies";
 //* Imports
 

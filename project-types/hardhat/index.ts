@@ -16,5 +16,5 @@ export default async function initTSProject (project: Project, options: { esm?: 
     await createFile(project.subPath(".gitignore"), "node_modules/\n.env\n.yarn\ncache\nartifacts\nignition/parameters.json\ntypechain-types");
 
     log("Installing dependencies...");
-    await exec("yarn install");
+    await exec("pnpm install");
 }

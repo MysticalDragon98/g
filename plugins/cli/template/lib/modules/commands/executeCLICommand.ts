@@ -30,7 +30,7 @@ export default async function executeCLICommand (args: string[], { options }: CL
         }
     }
 
-    const commandsPath = join(folder, command + ".cli-command.ts");
+    const commandsPath = join(folder, command + ".cli-command.js");
     let commandModule;
 
     try {

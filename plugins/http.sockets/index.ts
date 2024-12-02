@@ -11,9 +11,9 @@ import createFile from "../../lib/modules/fs/createFile";
 
 export default async function (project: Project, options: any) {
     const pluginPath = await getPluginPath("http.sockets");
-    const httpIndex = join(await getPluginPath("http"), "initHTTPServer.ts");
+    const httpIndex = project.subPath("plugins/http/initHTTPServer.ts");
 
-    await installTSDependencies([ "socket.io" ]);
+    await installTSDependencies([ "express", "socket.io" ]);
 
     await project.ensureDir("lib/http/sockets");
     await project.ensureDir("plugins/http.sockets");

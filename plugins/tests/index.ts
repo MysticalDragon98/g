@@ -26,7 +26,7 @@ export default async function (project: Project, options: any) {
         return json;
     });
 
-    await project.exec("yarn ts-jest config:init");
+    await project.exec("pnpm ts-jest config:init");
 
     await project.ensureDir("__tests__/mock");
     await project.ensureDir("__tests__/samples");

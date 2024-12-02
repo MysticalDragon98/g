@@ -8,5 +8,5 @@ import { exec } from "child_process";
 export default async function (project: Project, options: any) {
     //* TODO
     await copyDir(join(project.projectTypePath(), "template") as FilePath, project.path);
-    await exec("yarn install");
+    await exec("pnpm install");
 }

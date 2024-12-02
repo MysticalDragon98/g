@@ -2,7 +2,7 @@ import { readFile, writeFile } from "fs/promises";
 import { FilePath } from "../types/FilePath.type";
 import { PluginID } from "../types/PluginID.type";
 import { ProjectType } from "../types/ProjectType.type";
-import { join } from "path";
+import { join, resolve } from "path";
 import getProjectTypePath from "../modules/project-types/getProjectTypePath";
 import exec from "../modules/sh/exec";
 import fileExists from "../modules/fs/fileExists";
@@ -21,8 +21,10 @@ export default class Project {
         public path: FilePath,
         public type: ProjectType,
         public plugins: PluginID[],
-        public options: any = {}
-    ) {}
+        public options: any = { options: {} }
+    ) {
+        if (options.path) this.path = <FilePath>resolve(this.path, options.path);
+    }
 
     projectTypePath () {
         return getProjectTypePath(this.type);
@@ -57,7 +59,7 @@ export default class Project {
     }
 
     async setOption (key: string, value: any) {
-        this.options[key] = value;
+        this.options.options[key] = value;
         
         await this.save();
 
@@ -78,7 +80,7 @@ export default class Project {
         const file = {
             type: this.type,
             plugins: this.plugins,
-            options: this.options
+            options: this.options.options
         };
 
         await writeFile(join(this.path, "project.json"), JSON.stringify(file, null, 4));
@@ -217,7 +219,7 @@ export default class Project {
 
         log(`Installing ${pluginId} plugin in ${workdir}...`);
 
-        const pluginInitializer = await import(join(pluginPath, "index.ts")) as { default: (project: Project, options?: any) => Promise<void> };
+        const pluginInitializer = await import(join(pluginPath, "index")) as { default: (project: Project, options?: any) => Promise<void> };
         await pluginInitializer.default(project, {});
 
         project.plugins.push(pluginId);
@@ -232,7 +234,7 @@ export default class Project {
         const workdir = this.path;
         const projectTypePath = await join(Paths.projectTypes, projectType);
 
-        const projectInitializer = await import(join(projectTypePath, "index.ts")) as { default: (project: Project, options?: any) => Promise<void> };
+        const projectInitializer = await import(join(projectTypePath, "index")) as { default: (project: Project, options?: any) => Promise<void> };
 
         log(`Initializing ${projectType} project in ${workdir}...`);
 

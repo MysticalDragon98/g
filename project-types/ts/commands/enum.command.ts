@@ -2,35 +2,27 @@ import { join } from "path";
 import Project from "../../../lib/classes/Project.class";
 import { FilePath } from "../../../lib/types/FilePath.type";
 import { $ok } from "../../../lib/exceptions";
-import { log } from "termx";
+import { log } from "console";
 //* Imports
 
-export default async function enumCommand (project: Project, args: string[], options: any) {
-    let enumName: string;
-    let folderPath: FilePath;
-    let enumPath: FilePath;
+export default async function typeCommand (project: Project, args: string[], options: { unique?: boolean, folder?: FilePath }) {
+    let ePath: FilePath;
+    let moduleName = args[1]? args[0] : null;
+    let eName = args[1] ?? args[0];
+    let folder = options.folder ?? (moduleName? join("lib", "modules", moduleName, "enum") : join("lib", "enum")); 
 
-    if (options.folder) {
-        [ enumName ] = args;
+    $ok(eName, "Usage: g enum [module-name] <type-name>");
+    await project.ensureDir(folder);
+    ePath = join(folder, `${eName}.enum.ts`) as FilePath;
 
-        $ok(enumName, "Usage: g enum --folder folder <name>");
-        folderPath = options.folder;
-        enumPath = join(folderPath, `${enumName}.enum.ts`) as FilePath;
-    } else {
-        [ enumName ] = args;
+    $ok(eName, "Usage: g enum [module-name] <type-name>");
 
-
-        await project.ensureDir("lib/enum");
-        enumPath = join("lib/enum", `${enumName}.enum.ts`) as FilePath;
-
-        $ok(enumName, "Usage: g fn <fn-name>");
-    }
-
-    await project.generateFileFromTemplate("enum.ts", enumPath, {
-        name: enumName
+    await project.generateFileFromTemplate("enum.ts", ePath, {
+        name: eName,
+        unique: options.unique
     });
 
-    await project.vscodeOpen(enumPath);
+    await project.vscodeOpen(ePath);
     
-    log(`Successfully created enum ${enumName} at ${enumPath}.`);
+    log(`Successfully created type ${eName} at ${ePath}.`);
 }

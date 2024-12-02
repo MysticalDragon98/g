@@ -25,11 +25,11 @@ export default async function sampleCommand (project: Project, args: string[], o
         return;
     }
 
-    await project.pushToFileFromTemplate("tests:sample.ts", `__tests__/samples/${name}.test.ts`, {
+    await project.pushToFileFromTemplate("tests:sample.ts", `__tests__/samples/${name}.test-sample.ts`, {
         name
     });
 
-    log(`Sample ${name} has been created in __tests__/samples/${name}.test.ts`);
+    log(`Sample ${name} has been created in __tests__/samples/${name}.test-sample.ts`);
 
-    await vscodeOpen(project.subPath(`__tests__/samples/${name}.test.ts`));
+    await vscodeOpen(project.subPath(`__tests__/samples/${name}.test-sample.ts`));
 }
