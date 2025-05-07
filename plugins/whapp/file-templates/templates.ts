@@ -1,0 +1,1 @@
+export const T_WELCOME_MESSAGE = "Hola, En qué puedo ayudarte?";

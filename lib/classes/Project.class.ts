@@ -170,7 +170,7 @@ export default class Project {
         log(`Pushing to file ${destinationPath} from template ${plugin}:${templateName}...`);
         const templatePath = this.pluginSubPath(plugin, `file-templates/${templateName}`);
         const template = await readFile(templatePath, "utf-8");
-        const content = parseHandlebarsTemplate(template, data);
+        const content = parseHandlebarsTemplate(template, data, { noEscape: true });
 
         await writeFile(this.subPath(destinationPath), content, { flag: "a" });
     }
@@ -211,6 +211,8 @@ export default class Project {
     }
 
     async installPlugin (pluginId: PluginID) {
+        if (this.plugins.includes(pluginId)) return;
+
         const project = this;
         const workdir = this.path;
         const pluginPath = await getPluginPath(pluginId);

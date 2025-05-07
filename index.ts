@@ -7,7 +7,7 @@ import Minimist from "minimist";
 
 async function main () {
     const minimistArgs = Minimist(process.argv.slice(2), {
-        boolean: ["type", "plugin"]
+        boolean: []
     });
 
     await executeCLICommand(minimistArgs._, {

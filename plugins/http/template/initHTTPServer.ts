@@ -2,7 +2,7 @@ import { Server } from "@olptools/http-server";
 import { $HTTP_PORT } from "../../lib/env";
 //* Imports
 
-const Endpoints = {
+export const Endpoints = {
     //* Endpoints
 }
 

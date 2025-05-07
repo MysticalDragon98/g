@@ -1,7 +1,8 @@
 
 import { Mongoose, connect } from "mongoose";
 import { $MONGO_URI } from "../../lib/env";
-import { log } from "termx";
+import debug from "debug";
+const log = debug("plugin:mongo");
 
 export let MongoConnection: Mongoose = null;
 export async function initDatabaseConnection () {

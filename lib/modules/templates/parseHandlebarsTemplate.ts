@@ -3,8 +3,8 @@ import { compile } from "handlebars";
 import toVariableName from "../utils/toVariableName";
 
 
-export default function parseHandlebarsTemplate (template: string, data: any) {
-    const handlebars = compile(template);
+export default function parseHandlebarsTemplate (template: string, data: any, options: { noEscape?: boolean } = {}) {
+    const handlebars = compile(template, options);
 
     return handlebars(data);
 }

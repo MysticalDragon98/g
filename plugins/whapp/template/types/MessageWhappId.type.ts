@@ -1,0 +1,1 @@
+export type MessageWhappId = string & { readonly __brand: unique symbol };

@@ -1,0 +1,1 @@
+export const MISSING_PLUGIN = `The {plugin} plugin is required, please install it using g plugin {plugin}.`;

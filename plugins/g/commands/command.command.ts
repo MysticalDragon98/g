@@ -7,13 +7,15 @@ import vscodeOpen from "../../../lib/modules/vscode/vscodeOpen";
 interface IOptions {
     global?: string;
     plugin?: string;
+    type?: string;
     template?: string;
     templates?: string;
 }
 
 export default async function commandCommand (project: Project, args: string[], options: IOptions = {}) {
     const { plugin } = options;
-    const [ parentType, commandName ] = args;
+    const [ commandName ] = args;
+    const parentType = plugin ? options.plugin : options.type;
 
     if (options.global !== undefined) return await generateGlobalCommand(args, { options });
 
