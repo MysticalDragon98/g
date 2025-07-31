@@ -3,7 +3,7 @@ import Project from "../../lib/classes/Project.class";
 import copyDir from "../../lib/modules/fs/copyDir";
 import getPluginPath from "../../lib/modules/plugins/getPluginPath";
 import { FilePath } from "../../lib/types/FilePath.type";
-import { installTSDependencies } from "../../project-types/ts/lib/modules/utils/installTSDependencies";
+import { installTSDependencies } from "../../project-types/ts/utils/installTSDependencies";
 //* Imports
 
 export default async function (project: Project, options: any) {

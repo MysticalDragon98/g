@@ -1,16 +1,16 @@
 import { join } from "path";
-import Project from "../../lib/classes/Project.class";
-import copyDir from "../../lib/modules/fs/copyDir";
-import gitInit from "../../lib/modules/git/gitInit";
-import { FilePath } from "../../lib/types/FilePath.type";
-import createFile from "../../lib/modules/fs/createFile";
-import exec from "../../lib/modules/sh/exec";
 import { log } from "termx";
-import transformJsonFile from "../../lib/modules/fs/transformJsonFile";
-import setJSONFileFields from "../../lib/modules/fs/setJSONFileFields";
 import { unlink, writeFile } from "fs/promises";
 import inquirer from "inquirer";
-import { installTSDependencies } from "./lib/modules/utils/installTSDependencies";
+import gitInit from "../../lib/modules/git/gitInit";
+import copyDir from "../../lib/modules/fs/copyDir";
+import createFile from "../../lib/modules/fs/createFile";
+import { exec } from "child_process";
+import transformJsonFile from "../../lib/modules/fs/transformJsonFile";
+import { installTSDependencies } from "./utils/installTSDependencies";
+import setJSONFileFields from "../../lib/modules/fs/setJSONFileFields";
+import Project from "../../lib/classes/Project.class";
+import { FilePath } from "../../lib/types/FilePath.type";
 
 export default async function initTSProject (project: Project, options: { esm?: boolean, lib?: boolean }) {
     log("Initializing TS project...");
